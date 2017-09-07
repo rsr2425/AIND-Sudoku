@@ -3,11 +3,34 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: The naked twins strategy hinges upon the insight that if two boxes within a unit (i
+.e. same row, column, etc.) have the same pair of possible digits, then because of the
+constraints inherent in Sudoku, it is guaranteed that those two digits will *only*
+appear in one of those boxes.  As a result, we can remove the digits in the twin
+pairs from all other boxes in the unit. Thus, we use
+the constraints to glean valuable insight about a possible solution and use it to move
+use closer to our goal.
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: One technique for solving Sudoku efficiently is to use the constraints, which are
+very clearly defined, to your advantage.  For every empty square, you write the
+possibilities for digits (initially 1 through 9) and then subtract the possibilities
+based on what digits are contained in other boxes in the same unit.
+
+Diagonal Sudoku uses a simple extension of this principle.  In
+addition to the usual rows, columns, and squares, the boxes along the main diagonal are
+ also grouped.  These are two more units where we can look for solved boxes and
+ eliminate values in. It's also two more units where we can apply the only choice
+ technique.  Given the Sudoku implementation on the course website, the only change
+ that really needs to be made is adding the two diagonals to the list of units.  The
+ details of each unit are abstracted out in the implementations of the elimination,
+ only_choice, reduce_puzzle, and search functions, so adding that change results in
+ code that can solve diagonal Sudoku as well.
+
+ Although using constraint propagation isn't guranteed to find you a solution, it reduces
+  the number of possibilities you're left with for solutions, at which point it's more
+  reasonable to apply a search technique.
 
 ### Install
 
